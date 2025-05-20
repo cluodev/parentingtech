@@ -9,7 +9,10 @@ I have found ScreenTime on MacBook (>=os x.y.z ) can not detect the Roblox Deskt
 
 ### How to 
 
-*roblox_blocker.py*
+_roblox_blocker.py_
+
+- Download the roblox_blocker.py e.g. save the file to `/Users/your_username/parentingtech/`
+- make change in the file accordingly
 
 *Launch Agent Definition File*
 
@@ -18,8 +21,9 @@ I have found ScreenTime on MacBook (>=os x.y.z ) can not detect the Roblox Deskt
 
 *No password for sudoer*
 
-- sudo visudo
-- append the following line 
+- `sudo visudo`
+- append the following line in the file `sudo`
+
 yourusername ALL=(ALL) NOPASSWD: /bin/chmod -R 000 /Users/yourusername/dev/tools/*, /bin/chmod -R 755 /Users/yourusername/dev/tools/*
 
 *Load and Unload*
