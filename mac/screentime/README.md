@@ -28,6 +28,6 @@ yourusername ALL=(ALL) NOPASSWD: /bin/chmod -R 000 /Users/yourusername/dev/tools
 
 *Load and Unload*
 
-launchctl load ~/Library/LaunchAgents/com.roblox.blocker.plist
-launchctl unload ~/Library/LaunchAgents/com.roblox.blocker.plist
+- `launchctl load ~/Library/LaunchAgents/com.roblox.blocker.plist`
+- `launchctl unload ~/Library/LaunchAgents/com.roblox.blocker.plist`
 
