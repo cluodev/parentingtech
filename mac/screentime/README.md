@@ -1,7 +1,7 @@
 # Introduction
 This project contains small programs that I use to manage my son's screentime such as on MacBook, smart phone, Windows PC, etc
 
-# Games
+# Applications
 
 ## Roblox Blocker
 
@@ -27,6 +27,7 @@ _roblox_blocker.py_
 yourusername ALL=(ALL) NOPASSWD: /bin/chmod -R 000 /Users/yourusername/dev/tools/*, /bin/chmod -R 755 /Users/yourusername/dev/tools/*
 
 *Load and Unload*
+
 launchctl load ~/Library/LaunchAgents/com.roblox.blocker.plist
 launchctl unload ~/Library/LaunchAgents/com.roblox.blocker.plist
 
