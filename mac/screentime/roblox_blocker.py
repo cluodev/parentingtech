@@ -18,11 +18,40 @@ def set_permissions(block=True):
             except subprocess.CalledProcessError as e:
                 print(f"Failed to set permissions on {full_path}: {e}")
 
+def get_available_times_by_dayOfWeek():
+    # This function is not used in the current implementation
+    # but can be extended to return available times based on the day of the week.
+    """Return a dictionary of available times for each day of the week."""
+    # Example times are provided; adjust as needed.
+    # Times are in 24-hour format as tuples of (start_hour, end_hour). half-hour represented as .5
+    # The keys are the days of the week, and the values are lists of tuples.
+    # This is a mock implementation. In a real scenario, you might fetch this from a configuration file or a database.
+    # Each day has a list of tuples representing available time slots.
+    # This is a placeholder implementation. 
+
+    return {
+        "Monday": [(10, 12), (16, 17), (17.5, 18.5)],
+        "Tuesday": [(10, 12), (16, 17), (17.5, 18.5)],
+        "Wednesday": [(10, 12), (16, 17), (17.5, 18.5)],
+        "Thursday": [(10, 12), (16, 17), (17.5, 18.5)],
+        "Friday": [(10, 12), (16, 17.5), (19.5, 21.5)],
+        "Saturday": [(10, 12), (15, 16), (17, 18)],
+        "Sunday": [(10, 12), (19.5, 20.5)]
+    }
+
 def is_blocking_time():
-    now = datetime.now()
-    hour, minute = now.hour, now.minute
-    # Block from 21:00 to 10:00
-    return (hour >= 21) or (hour < 10) or (hour == 10 and minute == 0)
+    """Check if the current time is within the blocking periods."""
+
+    unblocking_times = get_available_times_by_dayOfWeek()
+    current_time = datetime.now()
+    current_day = current_time.strftime("%A")  # Get the full weekday name (e.g., 'Monday')
+    current_hour = current_time.hour + current_time.minute / 60.0  # Convert to decimal hour
+
+    for start, end in unblocking_times.get(current_day, []):
+        if (current_hour > start and current_hour < end) or (current_hour == start and current_time.minute == 0):
+            return False  # Not blocking time
+
+    return True  # Blocking time
 
 def main():
     last_state = None  # None, 'blocked', or 'unblocked'
@@ -34,7 +63,7 @@ def main():
         elif not should_block and last_state != 'unblocked':
             set_permissions(block=False)
             last_state = 'unblocked'
-        time.sleep(60)  # Check every minute
+        time.sleep(30)  # Check every 30 seconds
 
 if __name__ == "__main__":
     main()
